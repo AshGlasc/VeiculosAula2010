@@ -40,3 +40,22 @@ veiculosRouter.delete("/:id", async (req, res) => {
         console.error (error);
     }
 });
+
+veiculosRouter.post("/", async (req, res) => {
+    try {
+        const veiculos = await veiculosServices.create(req.body);
+         res.status(201).json(veiculos);
+    }catch (error) {
+        console.error (error);
+    }
+});
+veiculosRouter.put("/:id", async (req, res) => {
+    const id = req.params.id
+    try{
+        const veiculos = await veiculosServices.update(req.body, id);
+         return res.status(200).json(veiculos);  
+          
+    }catch (error){
+      console.error ("deu erro kkk",error)
+    }
+})
